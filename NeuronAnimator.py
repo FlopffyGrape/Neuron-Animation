@@ -2,7 +2,6 @@ import pygame, random, math
 pygame.init()
 
 from Dot import Dot
-from LineInfo import LineInfo
 
 class NeuronAnimator:
     def __init__(self, window: pygame.Surface, windowWidth, windowHeight):
