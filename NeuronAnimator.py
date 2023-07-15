@@ -29,6 +29,10 @@ class NeuronAnimator:
             self.timer = 0
 
         for dot in self.dotList:
+            if (dot.x > self.window.get_width()
+            or dot.y > self.window.get_height() or dot.y < 0):
+                self.dotList.remove(dot)
+
             dot.render()
             dot.move()
 
