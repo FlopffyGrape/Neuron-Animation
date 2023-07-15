@@ -11,12 +11,26 @@ class NeuronAnimator:
         self.windowWidth = windowWidth
         self.windowHeight = windowHeight
 
+        self.timer = 0
+        self.spawnInterval = 600
+
         self.dotList = []
 
     def generateRandomDots(self):
-        newDotPos = (0, random.randint(0, self.windowHeight) )
-        newDot = Dot(self.window, newDotPos, random.randint(), random.randint(10, 20))
-        self.dotList.append()
+        self.timer += 1
+
+        if self.timer > self.spawnInterval:
+            newDot = Dot(self.window, 0, random.randint(0, self.windowHeight), random.randint(100, 255), random.randint(5, 7))
+
+            newDot.velocity.x = random.randint(4, 8)/100
+            newDot.velocity.y = random.randint(-2, 2)/100
+
+            self.dotList.append(newDot)
+            self.timer = 0
+
+        for dot in self.dotList:
+            dot.render()
+            dot.move()
 
     def run(self):
         self.generateRandomDots()
