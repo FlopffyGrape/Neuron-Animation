@@ -18,12 +18,11 @@ class Dot(pygame.sprite.Sprite):
         self.image.convert_alpha()
         self.image.set_colorkey((0, 0, 0))
         self.image.set_alpha(opacity)
+        self.image = pygame.transform.scale(self.image, (self.size, self.size))
 
     def move(self):
         self.x += self.velocity.x
         self.y += self.velocity.y
 
     def render(self):
-        self.image = pygame.transform.scale(self.image, (self.size, self.size))
-        
         self.window.blit(self.image, (self.x, self.y))
