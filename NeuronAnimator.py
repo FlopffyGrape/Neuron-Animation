@@ -4,18 +4,20 @@ pygame.init()
 from Dot import Dot
 
 class NeuronAnimator:
-    def __init__(self, window: pygame.Surface):
+    def __init__(self, window: pygame.Surface, clock: pygame.time.Clock()):
         self.window = window
+
+        self.clock = clock
 
         self.windowWidth, self.windowHeight = window.get_size()
 
         self.timer = 0
-        self.spawnInterval = 400
+        self.spawnInterval = 600
 
         self.dotList = []
 
     def generateRandomDots(self):
-        self.timer += 1
+        self.timer += self.clock.get_time()
 
         if self.timer > self.spawnInterval:
             newDot = Dot(self.window, 0, random.randint(0, self.windowHeight),
@@ -39,7 +41,7 @@ class NeuronAnimator:
                 # Here we'll use Pythagoras to solve the distance between dots
                 distance = math.sqrt( (dot.x - dotToCheckDistance.x) ** 2 + (dot.y - dotToCheckDistance.y) ** 2 )
 
-                if distance < 120:
+                if distance < 110:
                     pygame.draw.line(self.window, (128, 176, 255), (dot.x + round(dot.size / 2), dot.y + round(dot.size / 2)), 
                     (dotToCheckDistance.x + round(dotToCheckDistance.size / 2), dotToCheckDistance.y + round(dotToCheckDistance.size / 2)), 1)
 

@@ -7,7 +7,9 @@ pygame.init()
 window = pygame.display.set_mode((640, 480))
 pygame.display.set_caption("Neuron Animation")
 
-neuronAnimator = NeuronAnimator(window)
+clock = pygame.time.Clock()
+
+neuronAnimator = NeuronAnimator(window, clock)
 
 running = True
 while running:
@@ -20,6 +22,8 @@ while running:
     neuronAnimator.run()
 
     pygame.display.update()
+
+    clock.tick()
 
 pygame.quit()
 quit()
