@@ -4,11 +4,10 @@ pygame.init()
 from Dot import Dot
 
 class NeuronAnimator:
-    def __init__(self, window: pygame.Surface, windowWidth, windowHeight):
+    def __init__(self, window: pygame.Surface):
         self.window = window
 
-        self.windowWidth = windowWidth
-        self.windowHeight = windowHeight
+        self.windowWidth, self.windowHeight = window.get_size()
 
         self.timer = 0
         self.spawnInterval = 400
@@ -38,7 +37,7 @@ class NeuronAnimator:
 
             for dotToCheckDistance in self.dotList:
                 # Here we'll use Pythagoras to solve the distance between dots
-                distance = abs( math.sqrt( (dot.x - dotToCheckDistance.x) ** 2 + (dot.y - dotToCheckDistance.y) ** 2 ) )
+                distance = math.sqrt( (dot.x - dotToCheckDistance.x) ** 2 + (dot.y - dotToCheckDistance.y) ** 2 )
 
                 if distance < 120:
                     pygame.draw.line(self.window, (128, 176, 255), (dot.x + round(dot.size / 2), dot.y + round(dot.size / 2)), 
